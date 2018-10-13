@@ -35,7 +35,7 @@ class Project(models.Model):
     project_image = models.ImageField(upload_to='projects-images')
     project_title = models.CharField(max_length =30)
     project_description = models.CharField(max_length =30)
-    project_link = models.URLField()
+    project_link = models.URLField(max_length=128)
     image_comments = models.TextField()
     user = models.ForeignKey(User,on_delete=models.CASCADE ,null=True)
     
@@ -62,10 +62,12 @@ class Project(models.Model):
     def delete_image(self):
         return self.delete()
  
-class Comment(models.Model):
+class Review(models.Model):
     user = models.ForeignKey(User,null=True)
-    post=models.ForeignKey(Image,related_name='comments',null=True)
-    comment=models.CharField(max_length=200,null=True)
+    project=models.ForeignKey(Project,related_name='reviews',null=True)
+    design=models.CharField(max_length=200,null=True)
+    usability=models.CharField(max_length=200,null=True)
+    content=models.CharField(max_length=200,null=True)
 
     def __str__(self):
         return self.comment
