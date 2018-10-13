@@ -6,7 +6,8 @@ from django.contrib.auth.models import User
 class Profile(models.Model):
     profile_photo = models.ImageField(upload_to='profile-pics')
     bio = models.TextField()
-    user= models.ForeignKey(User)
+    user = models.ForeignKey(User,null=True)
+    contacts = models.CharField(max_length =30)
 
     @classmethod
     def get_all(cls):
@@ -68,13 +69,7 @@ class Review(models.Model):
     design=models.CharField(max_length=200,null=True)
     usability=models.CharField(max_length=200,null=True)
     content=models.CharField(max_length=200,null=True)
+    
 
-    def __str__(self):
-        return self.comment
-
-class Likes(models.Model):
-    user = models.OneToOneField(User,related_name='l_user')
-    post=models.ForeignKey(Image,related_name='likes')
-    like=models.CharField(max_length=3,default='1')
 
 
