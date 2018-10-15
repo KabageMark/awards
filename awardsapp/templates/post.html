@@ -1,3 +1,4 @@
+{%extends "base.html"%}
 {% load bootstrap4 %} {% load staticfiles %}
 <!DOCTYPE html>
 <html>
@@ -16,7 +17,7 @@
 
 <body>
 <div class="container-fluid">
-  <form  action="{%url 'new-post'%}" method="post" enctype="multipart/form-data">
+  <form  action="{%url 'post-project'%}" method="post" enctype="multipart/form-data">
     {%csrf_token%}
 
     {% bootstrap_form form%}

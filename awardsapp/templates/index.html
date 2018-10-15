@@ -1,1 +1,17 @@
-<h1>hello mark</h1>
+{% extends 'base.html' %}
+{% block content %}
+<h1>Awards</h1>
+{% for proj in projects %}
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{proj.project_image.url}}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{proj.project_title}}</h5>
+      <p class="card-text">{{proj.project_description}}</p>
+      <a href="{{proj.project_link}}" class="card-link">open project</a>
+      <a href="#" class="card-link">link</a>
+    </div>
+  </div>
+  <br>
+  <br>
+{% endfor %} 
+{% endblock %} 

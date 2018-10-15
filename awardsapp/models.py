@@ -37,13 +37,17 @@ class Project(models.Model):
     project_title = models.CharField(max_length =30)
     project_description = models.CharField(max_length =30)
     project_link = models.URLField(max_length=128)
-    image_comments = models.TextField()
     user = models.ForeignKey(User,on_delete=models.CASCADE ,null=True)
     
     @classmethod
     def get_all(cls):
-        all_objects = Image.objects.all()
+        all_objects = Project.objects.all()
         return all_objects
+
+    @classmethod
+    def search_by_name(cls,search_term):
+        project = cls.objects.filter(name__icontains=search_term)
+        return project
 
     @classmethod
     def get_image_by_id(cls,incoming_id):

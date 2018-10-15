@@ -1,10 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http  import HttpResponse
 from .forms import NewProjectForm
+from .models import Project
 # Create your views here.
 
-def welcome(request):
-    return render(request, 'index.html')
+def home(request):
+    title = 'awards'
+    current_user = request.user
+    projects = Project.get_all()
+    return render(request, 'index.html',{"projects": projects,})
+
 
 # @login_required(login_url='/accounts/login/')
 def NewPost(request):
@@ -15,7 +20,7 @@ def NewPost(request):
             new_post = form.save()
             new_post.user = current_user
             new_post.save()
-        return redirect('index')
+        return redirect('welcome')
 
     else:
         form = NewProjectForm()
