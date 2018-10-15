@@ -25,3 +25,15 @@ def NewPost(request):
     else:
         form = NewProjectForm()
     return render(request, 'post.html', {"form": form})
+
+# @login_required(login_url='/accounts/login/')
+def search_results(request):
+                                                                  
+    if 'search' in request.GET and request.GET['search']:
+        search_item = request.GET.get('search')
+        searched_projects = Project.objects.filter(project_title=search_item)
+        message = f"{searched_projects}"
+        return render(request, 'search.html',{"message":message,"projects": searched_projects})
+    else:
+        message = "You haven't searched for any projects"
+        return render(request, 'search.html',{"message":message})

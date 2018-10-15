@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="row">
+  {% if projects %}
+    {% for project in projects %}
+
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="{{project.project_image.url}}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{project.project_title}}</h5>
+              <p class="card-text">{{project.project_description}}</p>
+              <a href="{{project.project_link}}" class="card-link">Open</a>
+            </div>
+          </div>
+              
+          {% endfor %}
+            {% else %}
+               <h2>there are no projects posted</h2>
+        </div>
+    
+
+  
+    <h1 id='uname' >NO RESULTS</h1>
+    {% endif %}
+
+{% endblock %}
