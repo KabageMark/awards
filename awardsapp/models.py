@@ -70,9 +70,9 @@ class Project(models.Model):
 class Review(models.Model):
     user = models.ForeignKey(User,null=True)
     project=models.ForeignKey(Project,related_name='reviews',null=True)
-    design=models.CharField(max_length=200,null=True)
-    usability=models.CharField(max_length=200,null=True)
-    content=models.CharField(max_length=200,null=True)
+    design=models.IntegerField(max_length=200,null=True)
+    usability=models.IntegerField(max_length=200,null=True)
+    content=models.IntegerField(max_length=200,null=True)
     
 
 

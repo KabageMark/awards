@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-
+{% load bootstrap4 %}
 
 {% for proj in projects %}
 {{proj.name}}
@@ -10,6 +10,13 @@
       <h5 class="card-title">{{proj.project_title}}</h5>
       <p class="card-text">{{proj.project_description}}</p>
       <a href="{{proj.project_link}}" class="card-link">Open</a>
+
+      <form action="/review/{{proj.id}}" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+    
+        {% bootstrap_form review %}
+        <input type="submit" class="btn btn-success btn-lg" value="Post">
+      </form>
     </div>
   </div>
   <br>
