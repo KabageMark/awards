@@ -2,9 +2,10 @@
 {% block content %}
 {% load bootstrap4 %}
 {% load staticfiles %}
-
-{% for proj in projects %}
-{{proj.name}}
+<div class="container">
+<div class="row">
+    {% for proj in projects %}
+  <div class="col-md-4">
 <div class="card" style="width: 18rem;">
     <img class="card-img-top" src="{{proj.project_image.url}}" alt="Card image cap">
     <div class="card-body">
@@ -30,7 +31,11 @@
 
     </div>
   </div>
+  </div>
+  {% endfor %}
+  </div>
+ 
   <br>
   <br>
-{% endfor %}
+</div>
 {% endblock %} 
