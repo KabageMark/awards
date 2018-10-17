@@ -16,3 +16,11 @@ class NewReviewForm(forms.ModelForm):
         widgets = {
             'tags': forms.CheckboxSelectMultiple(),
         }
+
+class NewProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        exclude = ['users']
+        widgets = {
+            'tags': forms.CheckboxSelectMultiple(),
+        }
