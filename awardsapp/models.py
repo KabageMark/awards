@@ -7,7 +7,7 @@ class Profile(models.Model):
     profile_photo = models.ImageField(upload_to='profile-pics')
     bio = models.TextField()
     user = models.ForeignKey(User,null=True)
-    contacts = models.CharField(max_length =30)
+    contacts = models.CharField(max_length=30)
 
     @classmethod
     def get_all(cls):

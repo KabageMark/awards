@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http  import HttpResponse
-from .forms import NewProjectForm,NewReviewForm
+from .forms import NewProjectForm,NewReviewForm,NewProfileForm
 from .models import Project
 # Create your views here.
 
@@ -41,7 +41,21 @@ def NewReview(request):
 
     else:
         form = NewProjectForm()
-    return render(request, 'index.html', {"form": form})   
+    return render(request, 'index.html', {"form": form})
+
+def NewProfile(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = NewProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            new_profile = form.save()
+            new_profile.user = current_user
+            new_profile.save()
+        return redirect('welcome')
+
+    else:
+        form = NewProfileForm()
+    return render(request, 'update.html', {"form": form})
 
 # @login_required(login_url='/accounts/login/')
 def search_results(request):
