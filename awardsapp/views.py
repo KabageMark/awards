@@ -54,8 +54,8 @@ def NewProfile(request):
         return redirect('welcome')
 
     else:
-        form = NewProfileForm()
-    return render(request, 'update.html', {"form": form})
+        profile = NewProfileForm()
+    return render(request, 'update.html', {"profile": profile})
 
 # @login_required(login_url='/accounts/login/')
 def search_results(request):

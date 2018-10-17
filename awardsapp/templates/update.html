@@ -1,5 +1,6 @@
-{%extends "base.html"%}
+{% extends "base.html" %}
 {% load bootstrap4 %} {% load staticfiles %}
+{% block content %}
 <!DOCTYPE html>
 <html>
 
@@ -7,11 +8,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>New Post</title>
+  <title>Update Profile</title>
   {{form.media}}
 
 {% block styles %} {% bootstrap_css %}
-  <link rel="stylesheet" href="{% static 'css/news.css' %}"> {% endblock %}
+  <link rel="stylesheet" href="{% static 'css/ind.css' %}"> <link rel="stylesheet" href="{% static 'css/nav.css' %}">{% endblock %}
 
 </head>
 
@@ -20,7 +21,7 @@
   <form  action="{%url 'post-update'%}" method="post" enctype="multipart/form-data">
     {%csrf_token%}
 
-    {% bootstrap_form form%}
+    {% bootstrap_form  profile %}
     <input type="submit" class="btn btn-success btn-lg" value="Post">
   </form>
 </div>
@@ -31,3 +32,4 @@
 </body>
 
 </html>
+{% endblock %}
