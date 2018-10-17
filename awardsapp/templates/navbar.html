@@ -1,7 +1,23 @@
-<nav class="navbar navbar-light bg-light justify-content-between">
-    <a class="navbar-brand"><img id="logo" src="https://st2.depositphotos.com/1024516/7331/v/950/depositphotos_73314199-stock-illustration-vector-star-logo-design-template.jpg" alt=""></a>
-    <form class="form-inline" action="{% url 'search-projects' %}">
-      <input class="form-control mr-sm-2" name='search' type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </nav>
+
+<nav class="navbar">
+            <section class="logo-section"><a href="{% url 'home' %}"><img class="logo" id="logo" src="https://st2.depositphotos.com/1024516/7331/v/950/depositphotos_73314199-stock-illustration-vector-star-logo-design-template.jpg"/></a>
+                  <div></div>
+                </section>
+                <form class="search-section" action="{% url 'search-projects' %}">
+                  <input class="input-search" type="search" name="search" placeholder="search"/>
+                </form>
+                <section class="icons-section"><a class="fa fa-compass" href="#"></a><a class="fa fa-heart" href="#"></a><a class="fa fa-user" href=""></a></section>
+
+                <div class="dropdown show">
+                  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Accounts 
+                  </a>
+                
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="/accounts/login">Login</a>
+                    <a class="dropdown-item" href="/accounts/login">logout</a>
+                    <a class="dropdown-item" href="/accounts/register">Register</a>
+                  </div>
+                </div>
+                
+              </nav>
