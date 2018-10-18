@@ -2,19 +2,23 @@
 {% block content %}
 {% load bootstrap4 %}
 {% load staticfiles %}
-<div class="container">
+<div class="container-fluid">
 <div class="row">
+{% if profile %}
 {% for profile in profile %}
   <div class="col-md-4">
 
-    <img src="{{profile.profile_photo.url}}" alt="Card image cap">
+    <img src="{{profile.profile_photo.url}}" alt="Card image cap" style=" border-radius:50%; height:180px;width: 180px;">
     
       <p class="card-text">{{profile.bio}}</p>
-
-  {% endfor %}
   </div>
- 
+  {% endfor %}
+ {%else%}
+ <p>you have no profile</p>
   <br>
   <br>
+  {%endif%}
+
+</div>
 </div>
 {% endblock %} 

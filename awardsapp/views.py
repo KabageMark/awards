@@ -11,11 +11,11 @@ def home(request):
     review = NewReviewForm()
     return render(request, 'index.html',{"projects": projects,"review":review})
 
-def Profile(request):
+def profile(request):
     title = 'awards'
     current_user = request.user
-    profile = Profile.get_all()
-    return render(request, 'index.html',{"profile": profile})
+    profile = Profile.objects.filter(user=current_user.id)
+    return render(request, 'profile.html',{"profile": profile})
 
 # @login_required(login_url='/accounts/login/')
 def NewPost(request):
