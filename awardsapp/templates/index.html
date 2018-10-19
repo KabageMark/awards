@@ -19,11 +19,6 @@
   </button>
   <br>
   <p>{{proj.average_rating}}&#x2605;</p>
-
-
-  {% for review in proj.review.all %}
-  <p>{{review.average_rating}}</p>
-  {% endfor %}
   
   <!-- Modal -->
   <div class="modal fade" id="exampleModal{{proj.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
