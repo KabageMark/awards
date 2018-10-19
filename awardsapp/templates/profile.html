@@ -15,6 +15,7 @@
   {% endfor %}
  {%else%}
  <p>you have no profile</p>
+ <a class="btn btn-primary" href="{% url 'post-profile' %}">Add Profile</a>
   <br>
   <br>
   {%endif%}

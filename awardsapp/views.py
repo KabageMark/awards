@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.http  import HttpResponse
 from .forms import NewProjectForm,NewReviewForm,NewProfileForm
 from .models import Project,Review,Profile
@@ -7,9 +7,24 @@ from .models import Project,Review,Profile
 def home(request):
     title = 'awards'
     current_user = request.user
+    review = Review.get_all()
     projects = Project.get_all()
-    review = NewReviewForm()
-    return render(request, 'index.html',{"projects": projects,"review":review})
+    form = NewReviewForm()
+    return render(request, 'index.html',{"projects": projects,"form":form,"review":review})
+
+def review(request,review_id):
+    title = 'awards'
+    current_user = request.user
+    review = get_object_or_404(Project,pk=review_id)
+    if request.method == 'POST':
+        form = NewReviewForm(request.POST, request.FILES)
+        if form.is_valid():
+            new_review = form.save(commit=False)
+            new_review.project = review
+            new_review.user = current_user
+            new_review.save()
+        return redirect('home')
+    return render(request, 'index.html',{"review":review})
 
 def profile(request):
     title = 'awards'
@@ -19,6 +34,7 @@ def profile(request):
 
 # @login_required(login_url='/accounts/login/')
 def NewPost(request):
+    title = 'awards'
     current_user = request.user
     if request.method == 'POST':
         form = NewProjectForm(request.POST, request.FILES)
@@ -34,21 +50,10 @@ def NewPost(request):
     return render(request, 'post.html', {"form": form,"review":review})
 
 # @login_required(login_url='/accounts/login/')
-def NewReview(request):
-    current_user = request.user
-    if request.method == 'POST':
-        form = NewReviewForm(request.POST, request.FILES)
-        if form.is_valid():
-            new_review = form.save()
-            new_review.user = current_user
-            new_review.save()
-        return redirect('home')
 
-    else:
-        form = NewProjectForm()
-    return render(request, 'index.html', {"form": form})
 
 def NewProfile(request):
+    title = 'awards'
     current_user = request.user
     if request.method == 'POST':
         form = NewProfileForm(request.POST, request.FILES)
@@ -64,6 +69,7 @@ def NewProfile(request):
 
 # @login_required(login_url='/accounts/login/')
 def search_results(request):
+    title = 'awards'
                                                                   
     if 'search' in request.GET and request.GET['search']:
         search_item = request.GET.get('search')

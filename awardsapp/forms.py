@@ -12,7 +12,7 @@ class NewProjectForm(forms.ModelForm):
 class NewReviewForm(forms.ModelForm):
     class Meta:
         model = Review
-        exclude = ['users']
+        exclude = ['user','project']
         widgets = {
             'tags': forms.CheckboxSelectMultiple(),
         }

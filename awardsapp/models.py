@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+import numpy as np
+
 # Create your models here.
 
 
@@ -66,14 +68,32 @@ class Project(models.Model):
     @classmethod    
     def delete_image(self):
         return self.delete()
- 
+     
+    def average_rating(self):
+        all_ratings = list(map(lambda x: x.design, self.review_set.all()))
+        all_ratings = list(map(lambda x: x.content, self.review_set.all()))
+        all_ratings = list(map(lambda x: x.usability, self.review_set.all()))
+        return np.mean(all_ratings)   
 class Review(models.Model):
+    RATING_CHOICES = (
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
+    )
     user = models.ForeignKey(User,null=True)
-    project=models.ForeignKey(Project,related_name='reviews',null=True)
-    design=models.IntegerField(max_length=200,null=True)
-    usability=models.IntegerField(max_length=200,null=True)
-    content=models.IntegerField(max_length=200,null=True)
+    project=models.ForeignKey(Project,null=True)
+    design=models.IntegerField(choices=RATING_CHOICES,null=True)
+    usability=models.IntegerField(choices=RATING_CHOICES,null=True)
+    content=models.IntegerField(choices=RATING_CHOICES,null=True)
+   
     
+    @classmethod
+    def get_all(cls):
+        all_objects = Review.objects.all()
+        return all_objects
+ 
 
 
 

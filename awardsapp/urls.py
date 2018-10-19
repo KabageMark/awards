@@ -8,9 +8,9 @@ urlpatterns=[
     url('^$',views.home,name = 'home'),
     url('^post$',views.NewPost,name = 'post-project'),
     url('^profile$',views.profile,name = 'profile'),
-    url('^update$',views.NewProfile,name = 'post-update'),
-    url(r'^review/(\d+)', views.NewReview, name='review'),
+    url('^update$',views.NewProfile,name = 'post-profile'),
     url('^search$',views.search_results,name = 'search-projects'),
+    url('^review/(\d+)$', views.review, name='review')
     
 ]
 if settings.DEBUG:
