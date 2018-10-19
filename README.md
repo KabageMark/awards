@@ -10,7 +10,8 @@ this is a web app that allows any registered user to post images,descriptions an
 * Start the server with **python3.6 manage.py runserver**
 * Run tests with **python3.6 manage.py test awardsapp**
 * click the url to see app on browser **http://127.0.0.1:8000/**
-
+* Accesing profile data **http://127.0.0.1:8000/api/profilemerch**
+* Accessing project data **http://127.0.0.1:8000/api/projectmerch**
 ## Installation Requirements
 * Web Browser
 * python Django Framework
@@ -19,6 +20,8 @@ this is a web app that allows any registered user to post images,descriptions an
 
 ## Known Bugs
 Installing some requirements may require you to install using the following command **python3.6 -m pip install Requiremnt** eg django-bootstrap4
+
+json data for api doesn't work browser but it works with postman 
 ## Technologies Used
 * HTML
 * CSS
