@@ -37,7 +37,7 @@ class Profile(models.Model):
 class Project(models.Model):
     project_image = models.ImageField(upload_to='projects-images')
     project_title = models.CharField(max_length =30)
-    project_description = models.CharField(max_length =30)
+    project_description = models.CharField(max_length=80)
     project_link = models.URLField(max_length=128)
     user = models.ForeignKey(User,on_delete=models.CASCADE ,null=True)
     
@@ -74,6 +74,7 @@ class Project(models.Model):
         all_ratings = list(map(lambda x: x.content, self.review_set.all()))
         all_ratings = list(map(lambda x: x.usability, self.review_set.all()))
         return np.mean(all_ratings)   
+
 class Review(models.Model):
     RATING_CHOICES = (
         (1, '1'),
@@ -81,6 +82,11 @@ class Review(models.Model):
         (3, '3'),
         (4, '4'),
         (5, '5'),
+        (6, '6'),
+        (7, '7'),
+        (8, '8'),
+        (9, '9'),
+        (10,'10'),
     )
     user = models.ForeignKey(User,null=True)
     project=models.ForeignKey(Project,null=True)

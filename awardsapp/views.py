@@ -5,6 +5,8 @@ from .models import Project,Review,Profile
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializer import ProfileSerializer,ProjectSerializer
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 
 class ProjectList(APIView):
@@ -47,7 +49,7 @@ def profile(request):
     profile = Profile.objects.filter(user=current_user.id)
     return render(request, 'profile.html',{"profile": profile})
 
-# @login_required(login_url='/accounts/login/')
+@login_required(login_url='/accounts/login/')
 def NewPost(request):
     title = 'awards'
     current_user = request.user
@@ -64,9 +66,7 @@ def NewPost(request):
         review = NewReviewForm()
     return render(request, 'post.html', {"form": form,"review":review})
 
-# @login_required(login_url='/accounts/login/')
-
-
+@login_required(login_url='/accounts/login/')
 def NewProfile(request):
     title = 'awards'
     current_user = request.user
@@ -82,7 +82,7 @@ def NewProfile(request):
         profile = NewProfileForm()
     return render(request, 'update.html', {"profile": profile})
 
-# @login_required(login_url='/accounts/login/')
+@login_required(login_url='/accounts/login/')
 def search_results(request):
     title = 'awards'
                                                                   
