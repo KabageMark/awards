@@ -21,11 +21,12 @@
             <div class="dropdown-divider"></div>
           </div>
         </li>
+        
         <li class="nav-item">
           <a class="nav-link disabled" href="{% url 'profile' %}">Profile</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link disabled" href="{% url 'post-project' %}">Post</a>
+            <a class="nav-link disabled" data-toggle="modal" data-target="#post"  href="{% url 'post-project' %}">Post</a>
           </li>
       </ul>
       <form class="form-inline my-2 my-lg-0" action="{% url 'search-projects' %}">

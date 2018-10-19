@@ -27,7 +27,8 @@ def home(request):
     review = Review.get_all()
     projects = Project.get_all()
     form = NewReviewForm()
-    return render(request, 'index.html',{"projects": projects,"form":form,"review":review})
+    post = NewProjectForm()
+    return render(request, 'index.html',{"projects": projects,"form":form,"review":review,"post":post})
 
 def review(request,review_id):
     title = 'awards'
@@ -63,8 +64,7 @@ def NewPost(request):
 
     else:
         form = NewProjectForm()
-        review = NewReviewForm()
-    return render(request, 'post.html', {"form": form,"review":review})
+    return render(request, 'post.html', {"form": form})
 
 @login_required(login_url='/accounts/login/')
 def NewProfile(request):
